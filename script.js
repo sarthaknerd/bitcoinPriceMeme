@@ -7,27 +7,24 @@ async function fetchBitcoinPrice() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        
-        // ✅ Log the response to ensure it's correct
         console.log("API Response:", data);
 
-        // ✅ Extract price correctly
         const price = data.bitcoin.usd; 
         document.getElementById('price').innerText = `Bitcoin Price: $${price}`;
 
-        // ✅ Choose meme based on price
-        let memeUrl = "";
-        
-        if (price > 100000) {
-            memeUrl = "https://imgflip.com/i/7u0mhq.jpg"; // 🚀 To the moon
-        } else if (price > 90000) {
-            memeUrl = "https://imgflip.com/i/7u0mhq.jpg"; // Over 90k meme
-        } else {
-            memeUrl = "https://imgflip.com/i/4vvva1.jpg"; // Hold the line meme
-        }
-        
-        document.getElementById('memeImage').src = memeUrl;
+        // Hide all images first
+        document.getElementById('meme1').style.display = "none";
+        document.getElementById('meme2').style.display = "none";
+        document.getElementById('meme3').style.display = "none";
 
+        // Show the correct meme based on price
+        if (price > 100000) {
+            document.getElementById('meme1').style.display = "block"; // 🚀 To the Moon
+        } else if (price > 90000) {
+            document.getElementById('meme2').style.display = "block"; // Over 90K meme
+        } else {
+            document.getElementById('meme3').style.display = "block"; // Hold the Line meme
+        }
     } catch (error) {
         console.error("Error fetching Bitcoin price:", error);
         document.getElementById('price').innerText = "Error loading price";
@@ -35,4 +32,4 @@ async function fetchBitcoinPrice() {
 }
 
 fetchBitcoinPrice();
-setInterval(fetchBitcoinPrice, 60000); // Update every 60 seconds
+setInterval(fetchBitcoinPrice, 60000);

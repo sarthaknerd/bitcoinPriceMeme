@@ -1,35 +1,23 @@
-
+const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
 
 async function fetchBitcoinPrice() {
     try {
-        const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, { mode: "cors" }); // Allow CORS
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        
+        // ✅ Log the API response to see its actual structure
         console.log("API Response:", data);
 
-        if (!data.bpi || !data.bpi.USD || !data.bpi.USD.rate) {
+        // ✅ Check if the response contains the expected structure
+        if (!data.bitcoin || !data.bitcoin.usd) {
             throw new Error("Invalid API response structure");
         }
 
-        const price = data.bpi.USD.rate;
+        const price = data.bitcoin.usd;
         document.getElementById('price').innerText = `Bitcoin Price: $${price}`;
-
-        let memeUrl = "";
-        const priceValue = parseFloat(price.replace(/,/g, ''));
-        
-        if (priceValue > 100000) {
-            memeUrl = "https://imgflip.com/i/7u0mhq.jpg"; //to moon
-        } else if (priceValue > 90000) {
-            memeUrl = "https://preview.redd.it/its-over-90-000-v0-d6aqivurwi0e1.jpeg?auto=webp&s=783d391530552add6edeec60c94df3d66850415a"; // btc taking a wrong turn
-        } else {
-            memeUrl = "https://imgflip.com/i/4vvva1.jpg"; //hold the line
-        }
-        
-        document.getElementById('memeImage').src = memeUrl;
     } catch (error) {
         console.error("Error fetching Bitcoin price:", error);
         document.getElementById('price').innerText = "Error loading price";
@@ -37,4 +25,4 @@ async function fetchBitcoinPrice() {
 }
 
 fetchBitcoinPrice();
-setInterval(fetchBitcoinPrice, 60000); // Update every 60 seconds
+setInterval(fetchBitcoinPrice, 60000);

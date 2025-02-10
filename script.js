@@ -12,7 +12,7 @@ async function fetchBitcoinPrice() {
         console.log("API Response:", data);
 
         // ✅ Extract price correctly
-        const price = 100001//data.bitcoin.usd; 
+        const price = data.bitcoin.usd; 
         document.getElementById('price').innerText = `Bitcoin Price: $${price}`;
 
         // ✅ Choose meme based on price
@@ -21,7 +21,7 @@ async function fetchBitcoinPrice() {
         if (price > 100000) {
             memeUrl = "https://imgflip.com/i/7u0mhq.jpg"; // 🚀 To the moon
         } else if (price > 90000) {
-            memeUrl = "https://preview.redd.it/its-over-90-000-v0-d6aqivurwi0e1.jpeg?auto=webp&s=783d391530552add6edeec60c94df3d66850415a"; // Over 90k meme
+            memeUrl = "https://imgflip.com/i/7u0mhq.jpg"; // Over 90k meme
         } else {
             memeUrl = "https://imgflip.com/i/4vvva1.jpg"; // Hold the line meme
         }

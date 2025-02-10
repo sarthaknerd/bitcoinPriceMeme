@@ -22,15 +22,21 @@
             max-width: 400px;
             border-radius: 10px;
             margin-top: 20px;
+            display: none; /* Hide all images initially */
         }
     </style>
 </head>
 <body>
     <div id="meme">
-        <h1> 🔥 Bitcoin 🔥</h1>
+        <h1>🔥 Bitcoin 🔥</h1>
         <p id="price">Loading...</p>
-        <img id="memeImage" src="" alt="Meme">
+        
+        <!-- Preload all images -->
+        <img id="meme1" src="https://i.imgur.com/Yo5LoyK.jpg" alt="To the Moon">
+        <img id="meme2" src="https://i.imgur.com/5QvF5eJ.jpg" alt="Over 90K">
+        <img id="meme3" src="https://i.imgur.com/u5DoJlW.jpg" alt="Hold the Line">
     </div>
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>

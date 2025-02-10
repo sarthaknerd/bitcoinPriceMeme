@@ -2,7 +2,9 @@
 
 async function fetchBitcoinPrice() {
     try {
-        const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
+        const apiUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.coindesk.com/v1/bpi/currentprice.json');
+
+        const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }

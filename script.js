@@ -2,7 +2,7 @@
 
 async function fetchBitcoinPrice() {
     try {
-        const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
+        const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
 
         const response = await fetch(apiUrl);
         if (!response.ok) {

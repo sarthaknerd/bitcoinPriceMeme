@@ -12,7 +12,7 @@ async function fetchBitcoinPrice() {
         console.log("API Response:", data);
 
         // ✅ Extract price correctly
-        const price = data.bitcoin.usd; 
+        const price = 100001//data.bitcoin.usd; 
         document.getElementById('price').innerText = `Bitcoin Price: $${price}`;
 
         // ✅ Choose meme based on price
